@@ -23,7 +23,7 @@
 1. リポジトリをクローン
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/kawabata-mcl/prompt-routing.git
 cd prompt-routing
 ```
 
@@ -31,12 +31,12 @@ cd prompt-routing
 
 ```bash
 # Linux/macOS
-python -m venv venv
-source venv/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 
 # Windows
-python -m venv venv
-venv\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
 3. 依存関係をインストール
@@ -59,14 +59,11 @@ export AWS_REGION=us-east-1
 
 ```bash
 # 仮想環境をアクティベート
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
+source .venv/bin/activate  # Linux/macOS
+.venv\Scripts\activate     # Windows
 
 # スクリプトを実行
 python prompt_routing.py
-
-# 使用後に仮想環境を非アクティベート
-deactivate
 ```
 
 プロンプトを入力すると、システムが適切なモデルを選択して応答します。
@@ -112,7 +109,7 @@ if not process_all_prompts:
 
 実行結果は以下の形式でマークダウンファイルとして保存されます：
 
-```markdown
+~~~markdown
 # プロンプト処理結果 - 20240310_123456
 
 ## 入力プロンプト
@@ -155,4 +152,49 @@ sonnet
 
 ```
 Claudeモデルからの応答
+```
+~~~
+
+### prompt_routing_simple.pyの使用方法
+
+このプロジェクトには、詳細なログ機能を省略したシンプル版の`prompt_routing_simple.py`も含まれています。こちらは対話型のコマンドラインインターフェイスを提供し、プロンプトを入力するごとに即時に処理結果を返します。
+
+特徴：
+- コマンドライン上でシンプルな対話式インターフェイスを提供
+- プロンプト入力から適切なモデル（HaikuまたはSonnet）を自動選択
+- 処理結果をリアルタイムで表示
+- ファイル出力機能はなし（ターミナルに直接表示のみ）
+
+使用方法：
+
+```bash
+# 仮想環境をアクティベート
+source .venv/bin/activate  # Linux/macOS
+.venv\Scripts\activate     # Windows
+
+# シンプル版スクリプトを実行
+python prompt_routing_simple.py
+
+# プロンプト入力画面が表示されるので、質問や指示を入力
+# 終了するには「exit」または「quit」と入力
+```
+
+実行すると、以下のような対話型インターフェイスが起動します：
+
+```
+プロンプトルーティングシステム（シンプル版）
+終了するには 'exit' または 'quit' と入力してください
+--------------------------------------------------
+
+プロンプトを入力してください: ここに質問や指示を入力
+
+処理中...
+
+選択されたモデル: Claude 3.5 Haiku
+
+回答:
+
+AIからの回答がここに表示されます
+
+--------------------------------------------------
 ```
