@@ -53,7 +53,6 @@ def analyze_prompt_with_nova(prompt_text):
     inference_config = {
         "maxTokens": 5,  # 非常に短い回答のみ必要
         "temperature": 0.0,  # 決定的な回答を得るため最低温度を設定
-        "topP": 1.0
     }
     
     start_time = time.time()
